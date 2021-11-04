@@ -213,6 +213,7 @@ class Model(dict, metaclass=ModelMetaclass):
         args.append(self.getValueOrDefault(self.__primary_key__))
         rows = await execute(self.__insert__, args)
         if rows != 1:
+            print('failed to insert record: affected rows: %s' % rows)
             logging.warn('failed to insert record: affected rows: %s' % rows)
 
     async def update(self):
